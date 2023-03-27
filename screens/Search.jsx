@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, SafeAreaView,View,ScrollView,StatusBar,Text} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Header from '../components/Header';
+//import Header from '../components/Header';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Api from '../Api';
 import { useContext } from "react";
@@ -10,7 +10,7 @@ import { cores } from '../style/globalStyle';
 
 
 
-const Home = () => {
+const Search = () => {
   const navigation = useNavigation();
   //const {loggedUser,setLoggedUser,nomeCidade,setNomeCidade} = useContext(DataContext);
   
@@ -46,10 +46,10 @@ const Home = () => {
                 backgroundColor={cores.vermelho}
                 barStyle="dark-content"
       />
-      <Header cidade="Brazópolis" />
+      
       <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.body}>
-            <Text>Home Screen</Text>
+            <Text>Search Screen</Text>
        </View>
       </ScrollView>
       
@@ -57,7 +57,7 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Search
 
 const styles = StyleSheet.create({
     container: {

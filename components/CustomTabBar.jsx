@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text,TouchableOpacity,View} from 'react-native';
-import { Entypo,FontAwesome,AntDesign} from '@expo/vector-icons'; 
+import { Entypo,FontAwesome,FontAwesome5,AntDesign} from '@expo/vector-icons'; 
 import { cores } from '../style/globalStyle';
 
-const MainTabBar = ({state,navigation}) => {
+const CustomTabBar = ({state,navigation}) => {
 
   const goTo = (screenName) => {
     navigation.navigate(screenName);
@@ -13,24 +13,24 @@ const MainTabBar = ({state,navigation}) => {
     <View style={styles.TabArea}>
 
             <TouchableOpacity style={styles.TabItem} onPress={()=>goTo('Home')}>
-              <Entypo style={{color:state.index === 0 ? cores.amarelo:cores.menuItem}} name="home" size={24}  />
-              <Text style={state.index === 0 ? styles.TabItemTextSelected:styles.TabItemText}>Inicio</Text>
+              <FontAwesome5 style={{color:state.index === 0 ? cores.preto:cores.menuItem}} name="store" size={24}  />
+              <Text style={state.index === 0 ? styles.TabItemTextSelected:styles.TabItemText}>Lojas</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.TabItem} onPress={()=>goTo('Pedidos')}>
-              <AntDesign style={{color:state.index === 1 ? cores.amarelo:cores.menuItem}} name="shoppingcart" size={24}  />
-              <Text style={state.index === 1 ? styles.TabItemTextSelected:styles.TabItemText}>Pedidos</Text>
+            <TouchableOpacity style={styles.TabItem} onPress={()=>goTo('Search')}>
+              <FontAwesome style={{color:state.index === 1 ? cores.preto:cores.menuItem}} name="search" size={24}  />
+              <Text style={state.index === 1 ? styles.TabItemTextSelected:styles.TabItemText}>Pesquisa</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.TabItem} onPress={()=>goTo('Profile')}>
-              <FontAwesome style={{color:state.index === 2 ? cores.amarelo:cores.menuItem}} name="user-circle-o" size={24}  />
+              <FontAwesome style={{color:state.index === 2 ? cores.preto:cores.menuItem}} name="user-circle-o" size={24}  />
               <Text style={state.index === 2 ? styles.TabItemTextSelected:styles.TabItemText}>Perfil</Text>
             </TouchableOpacity>
     </View>
   )
 }
 
-export default MainTabBar
+export default CustomTabBar
 
 
 const styles = StyleSheet.create({
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     TabItemTextSelected:{
       marginTop: 5,
-      color: cores.amarelo
+      color: cores.preto
     },
    
     AvatarIcon:{
