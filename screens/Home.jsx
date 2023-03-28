@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, SafeAreaView,View,ScrollView,StatusBar,Text} from 'react-native';
+import { StyleSheet, SafeAreaView,View,ScrollView,StatusBar,Text,Dimensions} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -7,11 +7,15 @@ import Api from '../Api';
 import { useContext } from "react";
 import DataContext from '../context/DataContext';
 import { cores } from '../style/globalStyle';
+import SearchField from '../components/SearchFiield';
+import BarraTipos from '../components/BarraTipos';
 
 
 
 const Home = () => {
   const navigation = useNavigation();
+  const [search,setSearch] = useState('');
+  const [tipoSelecionado,setTipoSelecionado] = useState(0);
   //const {loggedUser,setLoggedUser,nomeCidade,setNomeCidade} = useContext(DataContext);
   
 /*
@@ -37,7 +41,9 @@ const Home = () => {
   }, []);
 
 */
-  
+  const onSearch = (t) => {
+     setSearch(t);
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,9 +52,11 @@ const Home = () => {
                 backgroundColor={cores.vermelho}
                 barStyle="dark-content"
       />
-      <Header cidade="Brazópolis" />
+      <Header cidade="Brazópolis"/>
+      <BarraTipos tipoSelecionado={tipoSelecionado} setTipoSelecionado={setTipoSelecionado}/>
       <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.body}>
+            <SearchField value={search} setValue={setSearch}onChangeText={onSearch} placeholder="Encontre sua loja favorita"/>
             <Text>Home Screen</Text>
        </View>
       </ScrollView>
@@ -68,8 +76,11 @@ const styles = StyleSheet.create({
      },
     body:{
       flex:1,
+      width:  Dimensions.get('window').width,
       alignItems:'center',
       justifyContent: 'flex-start',
+      
+      paddingTop: 10,
     },
     sectionTitle:{
       fontWeight:'bold',
