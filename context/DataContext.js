@@ -4,11 +4,11 @@ const DataContext = createContext({});
 
 export const DataProvider = ({children}) => {
    const [loggedUser,setLoggedUser] = useState(null);
-   const [nomeCidade,setNomeCidade] = useState('');
-   const [favoritos,setFavoritos] = useState([]);
+   const [cidade,setCidade] = useState(null);
+   const [lojas,setLojas] = useState([]);
 
    return (
-    <DataContext.Provider value={{loggedUser, setLoggedUser,favoritos,setFavoritos,nomeCidade,setNomeCidade}}>
+    <DataContext.Provider value={{loggedUser, setLoggedUser,cidade,setCidade,lojas,setLojas}}>
       {children}
     </DataContext.Provider>
 )

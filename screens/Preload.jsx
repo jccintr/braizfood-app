@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, SafeAreaView,Image,StatusBar,Text,TouchableOpacity} from 'react-native';
+import { StyleSheet, SafeAreaView,Image,StatusBar,Text,ActivityIndicator} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import logo from '../assets/logo-branco-250.png';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
 import Api from '../Api';
 import { useContext } from "react";
 import DataContext from '../context/DataContext';
@@ -12,32 +12,26 @@ import { cores } from '../style/globalStyle';
 
 const Preload = () => {
   const navigation = useNavigation();
-  //const {loggedUser,setLoggedUser,nomeCidade,setNomeCidade} = useContext(DataContext);
+  const [isLoading,setIsLoading] = useState(false);
+  const {loggedUser,setLoggedUser,cidade,setCidade,lojas,setLojas} = useContext(DataContext);
   
-/*
+
   useEffect(()=>{
-    const getCityId = async () => {
-      const token = await AsyncStorage.getItem('token');
-      
-        const id = await AsyncStorage.getItem('@cityId');
-        const lat = await AsyncStorage.getItem('@userLat');
-        const lng  = await AsyncStorage.getItem('@userLng');
-       
-        if(id) {
-          let json = await Api.getCidade(id,lat,lng);
-           setNomeCidade(json.nome + ","+json.estado);
-           setCity(json);
-           setCategorias(json.categorias);
-           setSubCategorias(json.subcategorias);
-           setServicos(json.servicos);
-           
-        }
+    const getCidade = async () => {
+      setIsLoading(true);
+      let jsonCidade = await Api.getCidade(1);
+      setCidade(jsonCidade);
+      setLojas(jsonCidade.lojas);
+      setIsLoading(false);
+      navigation.reset({
+        routes:[{name:'MainTab'}]
+      }); 
     }
-    getCityId();
+    getCidade();
   }, []);
 
-*/
 
+/*
 useEffect(()=>{
 
   setTimeout(() => {
@@ -50,7 +44,7 @@ useEffect(()=>{
 
 }, []);
   
-
+*/
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -60,7 +54,7 @@ useEffect(()=>{
       />
       <Image source={logo} style={styles.logo}/>
       <Text style={styles.text}>Ridery</Text>
-     
+      {isLoading&&<ActivityIndicator  size="large" color="#fff"/>}
       
     </SafeAreaView>
   )

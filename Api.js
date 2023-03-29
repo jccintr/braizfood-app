@@ -8,17 +8,12 @@ export default {
    base_storage: 'http://192.168.0.107:8000/storage',
   
   //  base_storage: 'http://177.104.209.216:8000/storage',
-  getUser: async (token)=> {
-    const response = await fetch(`${BASE_API}/user/${token}`, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        },
-
-    });
-   return response;
-},
+ 
+getCidade: async (id) => {
+    const req = await fetch(`${BASE_API}/cidades/${id}`);
+    const json = await req.json();
+    return json;
+  },
   
         
 

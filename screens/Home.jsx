@@ -9,6 +9,7 @@ import DataContext from '../context/DataContext';
 import { cores } from '../style/globalStyle';
 import SearchField from '../components/SearchFiield';
 import BarraTipos from '../components/BarraTipos';
+import Lojas from '../components/Lojas';
 
 
 
@@ -16,7 +17,7 @@ const Home = () => {
   const navigation = useNavigation();
   const [search,setSearch] = useState('');
   const [tipoSelecionado,setTipoSelecionado] = useState(0);
-  //const {loggedUser,setLoggedUser,nomeCidade,setNomeCidade} = useContext(DataContext);
+  const {loggedUser,setLoggedUser,cidade,lojas} = useContext(DataContext);
   
 /*
   useEffect(()=>{
@@ -52,12 +53,13 @@ const Home = () => {
                 backgroundColor={cores.vermelho}
                 barStyle="dark-content"
       />
-      <Header cidade="Brazópolis"/>
+      <Header cidade={cidade.nome}/>
       <BarraTipos tipoSelecionado={tipoSelecionado} setTipoSelecionado={setTipoSelecionado}/>
       <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.body}>
             <SearchField value={search} setValue={setSearch}onChangeText={onSearch} placeholder="Encontre sua loja favorita"/>
-            <Text>Home Screen</Text>
+            <Lojas lojas={lojas}/>
+            
        </View>
       </ScrollView>
       
