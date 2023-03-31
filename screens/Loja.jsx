@@ -3,8 +3,10 @@ import React from 'react'
 import { cores } from '../style/globalStyle';
 import Api from '../Api';
 import { useNavigation } from '@react-navigation/native';
-import { AntDesign } from '@expo/vector-icons';
+import Fechado from '../components/Fechado';
+import Aberto from '../components/Aberto';
 import Header2 from '../components/Header2';
+import Rate from '../components/Rate';
 
 const Loja = ({route}) => {
   const navigation = useNavigation();
@@ -16,10 +18,12 @@ const Loja = ({route}) => {
       <StatusBar animated={true} backgroundColor={cores.vermelho} barStyle="dark-content"/>
       <Header2 loja={loja} />
       <Image style={styles.cover} source={{uri: `${Api.base_storage}/${loja.cover}`,}}/>
-      <Image style={styles.logotipo} source={{uri: `${Api.base_storage}/${loja.logotipo}`,}}/>
+      
       <View style={styles.status}>
-        <Text>aberto</Text>
-        <Text>stars</Text>
+        {loja.aberto?<Aberto/>:<Fechado/>}
+        <Image style={styles.logotipo} source={{uri: `${Api.base_storage}/${loja.logotipo}`,}}/>
+        <Rate value={loja.stars}/>
+       
       </View>
      
     </SafeAreaView>
@@ -57,5 +61,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
+   
    }
 })

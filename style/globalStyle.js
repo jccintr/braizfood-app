@@ -10,4 +10,5 @@ export const cores = {
     preto: '#000000',
     fundoSearchfield: '#f3f3f3',
     iconeSearchField: '#5b5b5b',
+    verde: '#139e38',
  };
