@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
       borderBottomColor: '#ede7d9',
     },
     logo:{
-       height: 80,
-       width: 80,
+       height: 60,
+       width: 60,
        borderRadius: 10,
        marginRight: 5,
     },
