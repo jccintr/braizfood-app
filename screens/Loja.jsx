@@ -1,5 +1,5 @@
 import { StyleSheet, StatusBar, SafeAreaView,Image,View,Text ,TouchableOpacity,Dimensions} from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import { cores } from '../style/globalStyle';
 import Api from '../Api';
 import { useNavigation } from '@react-navigation/native';
@@ -8,15 +8,16 @@ import Aberto from '../components/Aberto';
 import Header2 from '../components/Header2';
 import Rate from '../components/Rate';
 import { MaterialIcons,Entypo,AntDesign,FontAwesome } from '@expo/vector-icons';
+import ModalTaxas from '../components/ModalTaxas';
 
 
-const Taxas = ()=>{
+const Taxas = ({onPress})=>{
 
   return (
-     <View style={styles.taxaContainer}>
-      <MaterialIcons name="delivery-dining" size={20} color={cores.preto} />
-      <Text style={styles.taxaContainerText}>Taxa Entrega</Text>
-     </View>
+     <TouchableOpacity onPress={()=>onPress(true)} style={styles.taxaContainer}>
+        <MaterialIcons name="delivery-dining" size={20} color={cores.preto} />
+        <Text style={styles.taxaContainerText}>Taxa Entrega</Text>
+     </TouchableOpacity>
   )
 }
 
@@ -46,6 +47,12 @@ const Pagamentos = ()=>{
 const Loja = ({route}) => {
   const navigation = useNavigation();
   const {loja} = route.params;
+  const [modalTaxasVisible,setModalTaxasVisible] = useState(false);
+
+
+const onTaxaPress = () => {
+  setModalTaxasVisible(True);
+}
 
 
   return (
@@ -69,11 +76,12 @@ const Loja = ({route}) => {
               </View>
           </View>
           <View style={styles.infoArea}>
-             <Taxas/>
+             <Taxas onPress={setModalTaxasVisible}/>
              <Pagamentos/>
              <Atendimento/>
           </View>
       </View>
+      <ModalTaxas modalVisible={modalTaxasVisible} setModalVisible={setModalTaxasVisible} taxas={loja.taxas}/>
     </SafeAreaView>
   )
 }
