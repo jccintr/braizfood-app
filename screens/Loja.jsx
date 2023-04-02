@@ -9,6 +9,7 @@ import Header2 from '../components/Header2';
 import Rate from '../components/Rate';
 import { MaterialIcons,Entypo,AntDesign,FontAwesome } from '@expo/vector-icons';
 import ModalTaxas from '../components/ModalTaxas';
+import ModalAtendimento from '../components/ModalAtendimento';
 
 
 const Taxas = ({onPress})=>{
@@ -21,13 +22,13 @@ const Taxas = ({onPress})=>{
   )
 }
 
-const Atendimento = ()=>{
+const Atendimento = ({onPress})=>{
 
   return (
-     <View style={styles.taxaContainer}>
-      <FontAwesome name="calendar" size={20} color={cores.preto} />
-      <Text style={styles.taxaContainerText}>Atendimento</Text>
-     </View>
+     <TouchableOpacity onPress={()=>onPress(true)} style={styles.taxaContainer}>
+        <FontAwesome name="calendar" size={20} color={cores.preto} />
+        <Text style={styles.taxaContainerText}>Atendimento</Text>
+     </TouchableOpacity>
   )
 }
 
@@ -48,6 +49,7 @@ const Loja = ({route}) => {
   const navigation = useNavigation();
   const {loja} = route.params;
   const [modalTaxasVisible,setModalTaxasVisible] = useState(false);
+  const [modalAtendimentoVisible,setModalAtendimentoVisible] = useState(false);
 
 
 const onTaxaPress = () => {
@@ -78,10 +80,11 @@ const onTaxaPress = () => {
           <View style={styles.infoArea}>
              <Taxas onPress={setModalTaxasVisible}/>
              <Pagamentos/>
-             <Atendimento/>
+             <Atendimento onPress={setModalAtendimentoVisible}/>
           </View>
       </View>
       <ModalTaxas modalVisible={modalTaxasVisible} setModalVisible={setModalTaxasVisible} taxas={loja.taxas}/>
+      <ModalAtendimento modalVisible={modalAtendimentoVisible} setModalVisible={setModalAtendimentoVisible} atendimentos={loja.atendimentos}/>
     </SafeAreaView>
   )
 }

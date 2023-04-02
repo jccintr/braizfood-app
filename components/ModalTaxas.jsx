@@ -22,8 +22,8 @@ const ModalTaxas = ({modalVisible,setModalVisible,taxas}) => {
       <View style={styles.modalArea}>
         <View style={styles.modalBody}>
                <TouchableOpacity style={styles.headerArea} onPress={()=>setModalVisible(false)}>
-                  <Entypo name="chevron-down" size={34} color={cores.vermelho} />
-                  <Text style={styles.modalTitleText}>Taxas de Entrega por Bairros</Text>
+                  <Entypo name="chevron-down" size={34} color={cores.preto} />
+                  <Text style={styles.modalTitleText}>Bairros Atendidos</Text>
                 </TouchableOpacity>
                 <ScrollView style={{width: screenWidth}} contentContainerStyle={{alignItems:'center'}} showsVerticalScrollIndicator={false}>
                     {taxas.map((taxa)=>(
@@ -69,7 +69,7 @@ headerArea:{
 modalTitleText:{
     fontWeight: 'bold',
     fontSize: 18,
-    color: cores.vermelho,
+    color: cores.preto,
 },
 taxaCardContainer:{
   flex:1,  
