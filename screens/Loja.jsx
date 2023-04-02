@@ -10,6 +10,7 @@ import Rate from '../components/Rate';
 import { MaterialIcons,Entypo,AntDesign,FontAwesome } from '@expo/vector-icons';
 import ModalTaxas from '../components/ModalTaxas';
 import ModalAtendimento from '../components/ModalAtendimento';
+import ModalPagamentos from '../components/ModalPagamentos';
 
 
 const Taxas = ({onPress})=>{
@@ -32,13 +33,13 @@ const Atendimento = ({onPress})=>{
   )
 }
 
-const Pagamentos = ()=>{
+const Pagamentos = ({onPress})=>{
 
   return (
-     <View style={styles.taxaContainer}>
-      <FontAwesome name="credit-card" size={20} color={cores.preto} />
-      <Text style={styles.taxaContainerText}>Pagamento</Text>
-     </View>
+     <TouchableOpacity onPress={()=>onPress(true)} style={styles.taxaContainer}>
+        <FontAwesome name="credit-card" size={20} color={cores.preto} />
+        <Text style={styles.taxaContainerText}>Pagamento</Text>
+     </TouchableOpacity>
   )
 }
 
@@ -50,11 +51,9 @@ const Loja = ({route}) => {
   const {loja} = route.params;
   const [modalTaxasVisible,setModalTaxasVisible] = useState(false);
   const [modalAtendimentoVisible,setModalAtendimentoVisible] = useState(false);
+  const [modalPagamentosVisible,setModalPagamentosVisible] = useState(false);
 
 
-const onTaxaPress = () => {
-  setModalTaxasVisible(True);
-}
 
 
   return (
@@ -79,12 +78,13 @@ const onTaxaPress = () => {
           </View>
           <View style={styles.infoArea}>
              <Taxas onPress={setModalTaxasVisible}/>
-             <Pagamentos/>
+             <Pagamentos onPress={setModalPagamentosVisible}/>
              <Atendimento onPress={setModalAtendimentoVisible}/>
           </View>
       </View>
       <ModalTaxas modalVisible={modalTaxasVisible} setModalVisible={setModalTaxasVisible} taxas={loja.taxas}/>
       <ModalAtendimento modalVisible={modalAtendimentoVisible} setModalVisible={setModalAtendimentoVisible} atendimentos={loja.atendimentos}/>
+      <ModalPagamentos modalVisible={modalPagamentosVisible} setModalVisible={setModalPagamentosVisible} pagamentos={loja.pagamentos}/>
     </SafeAreaView>
   )
 }
@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
    },
    secondLineArea:{
+     marginTop: 5,
      marginLeft: 2,
      flexDirection: 'row',
      alignItems: 'center',

@@ -23,7 +23,7 @@ const ModalTaxas = ({modalVisible,setModalVisible,taxas}) => {
         <View style={styles.modalBody}>
                <TouchableOpacity style={styles.headerArea} onPress={()=>setModalVisible(false)}>
                   <Entypo name="chevron-down" size={34} color={cores.preto} />
-                  <Text style={styles.modalTitleText}>Bairros Atendidos</Text>
+                  <Text style={styles.modalTitleText}>Taxas de Entrega</Text>
                 </TouchableOpacity>
                 <ScrollView style={{width: screenWidth}} contentContainerStyle={{alignItems:'center'}} showsVerticalScrollIndicator={false}>
                     {taxas.map((taxa)=>(
