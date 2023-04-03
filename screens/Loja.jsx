@@ -60,8 +60,8 @@ const Loja = ({route}) => {
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={cores.vermelho} barStyle="dark-content"/>
       <Header2 loja={loja} />
-      <Image style={styles.cover} source={{uri: `${Api.base_storage}/${loja.cover}`,}}/>
-      
+      {loja.cover!==null?<Image style={styles.cover} source={{uri: `${Api.base_storage}/${loja.cover}`,}}/>:
+      <View style={[styles.fakeCover,{backgroundColor: loja.cor_fundo}]}></View>}
       <View style={styles.status}>
         {loja.aberto?<Aberto/>:<Fechado/>}
         <Image style={styles.logotipo} source={{uri: `${Api.base_storage}/${loja.logotipo}`,}}/>
@@ -110,6 +110,11 @@ const styles = StyleSheet.create({
    cover:{
     height: 200,
     width: '100%',
+   },
+   fakeCover:{
+    height: 100,
+    width: '100%',
+   
    },
    logotipo:{
     height: 100,

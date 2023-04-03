@@ -10,7 +10,7 @@ const Header2 = ({loja}) => {
 
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
         <TouchableOpacity onPress={()=>navigation.goBack()} style={{flexDirection:'row',alignItems:'center'}}>   
             <AntDesign name="arrowleft" size={26} color="#fff" />
             <Text style={styles.title}>{loja.nome}</Text>
@@ -24,7 +24,6 @@ export default Header2
 
 const styles = StyleSheet.create({
     container: {
-      
       backgroundColor: cores.vermelho,
       alignItems: 'center',
       justifyContent: 'space-between',
